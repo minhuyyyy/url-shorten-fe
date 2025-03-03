@@ -1,0 +1,12 @@
+{
+    "heading": "Free link shortener",
+    "originalUrlInput": "Enter link to shorten",
+    "originalUrlRequired": "Original link is required",
+    "invalidUrl": "Invalid URL format",
+    "shortCodeInput": "Enter shortcode for link",
+    "shortCodeRequired": "Shortcode is required",
+    "shortenBtn": "Shorten",
+    "copyBtn": "Copy",
+    "urlCopied": "URL copied to clipboard",
+    "shortCodeExistedError": "Shortcode already exists! Please choose another one"
+}

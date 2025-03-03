@@ -1,0 +1,42 @@
+{
+    "name": "url_shortener_fe",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@heroui/button": "^2.2.10",
+        "@heroui/input": "^2.4.13",
+        "@heroui/navbar": "^2.2.9",
+        "@heroui/popover": "^2.3.13",
+        "@heroui/system": "^2.4.10",
+        "@heroui/theme": "^2.4.6",
+        "accept-language": "^3.0.20",
+        "framer-motion": "^12.4.4",
+        "i18next": "^24.2.2",
+        "i18next-resources-to-backend": "^1.2.1",
+        "next": "15.1.7",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-hook-form": "^7.54.2",
+        "react-i18next": "^15.4.1"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "eslint": "^9",
+        "eslint-config-next": "15.1.7",
+        "postcss": "^8",
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5"
+    },
+    "resolutions": {
+        "@heroui/system": "2.4.10"
+    }
+}
