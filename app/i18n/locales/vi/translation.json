@@ -7,5 +7,6 @@
     "shortenBtn": "Rút gọn",
     "copyBtn": "Sao chép",
     "urlCopied": "URL đã được sao chép vào bảng tạm",
-    "shortCodeExistedError": "Mã tùy chỉnh đã tồn tại! Vui lòng chọn mã khác"
+    "shortCodeExistedError": "Mã tùy chỉnh đã tồn tại! Vui lòng chọn mã khác",
+    "setUrlExpirationDate": "Ngày hết hạn link"
 }

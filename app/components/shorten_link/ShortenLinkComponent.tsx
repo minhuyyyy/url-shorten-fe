@@ -1,14 +1,15 @@
 'use client';
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import InputComponent from '@components/input/Input';
 import { Button } from '@heroui/button';
 import { FieldValues, useForm } from 'react-hook-form';
-import postShortenLink from '@/app/apis/postShortenLink';
-import { ShortLinkValues } from '@/app/contracts/interfaces/shortLinkValues';
-import CopyBtn from '../buttons/CopyBtn';
+import CopyBtn from '@components/buttons/CopyBtn';
 import { Popover, PopoverContent, PopoverTrigger } from '@heroui/popover';
 import { useI18n } from '@/app/contexts/I18nContext';
 import { ErrorEnum } from '@/app/contracts/enums/Error';
+import LinkShortenOption from '@components/option/LinkShortenOption';
+import postShortenLink from '@/app/api/postShortenLink';
 
 function ShortenLinkComponent() {
     const { t } = useI18n();
@@ -24,13 +25,30 @@ function ShortenLinkComponent() {
     const [showCopyBtn, setShowCopyBtn] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [isInputDisabled, setIsInputDisabled] = useState(false);
-    const urlRegex =
-        /^((http|https):\/\/)(localhost|(\d{1,3}\.){3}\d{1,3}|([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})(:\d{1,5})?(\/[^\s]*)?(#[^\s]*)?$/;
+    const [expirationDate, setExpirationDate] = useState<string>('');
+
+    useEffect(() => {
+        console.log(
+            '🚀 ~ ShortenLinkComponent ~ expirationDate:',
+            expirationDate,
+        );
+    }, [expirationDate]);
 
     const onSubmit = async (data: FieldValues) => {
+        const formData = new FormData();
+        formData.append('originalUrl', data.originalUrl);
+        formData.append('shortCode', data.shortCode);
+
+        // if (expirationDate) {
+        formData.append('expiredDate', expirationDate);
+        // }
+
         try {
-            const res = await postShortenLink(data as ShortLinkValues);
-            console.log('🚀 ~ onSubmit ~ res:', res);
+            console.log(
+                '🚀 ~ onSubmit ~ formData:',
+                formData.get('expiredDate'),
+            );
+            const res = await postShortenLink(formData);
             if (res?.shortenedURL) {
                 setValue(
                     'originalUrl',
@@ -41,12 +59,11 @@ function ShortenLinkComponent() {
                 setIsInputDisabled(true);
             }
         } catch (error) {
-            if (error instanceof Error) {
-                if (
-                    error.message === ErrorEnum[ErrorEnum.SHORTENED_URL_EXISTED]
-                ) {
-                    setError(t('shortCodeExistedError'));
-                }
+            if (
+                error instanceof Error &&
+                error.message === ErrorEnum[ErrorEnum.SHORTENED_URL_EXISTED]
+            ) {
+                setError(t('shortCodeExistedError'));
             }
         }
     };
@@ -55,13 +72,19 @@ function ShortenLinkComponent() {
         navigator.clipboard.writeText(text).then(() => setOpenPopover(true));
     };
 
+    const urlRegex =
+        /^((http|https):\/\/)(localhost|(\d{1,3}\.){3}\d{1,3}|([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})(:\d{1,5})?(\/[^\s]*)?(#[^\s]*)?$/;
+
     return (
         <div className='w-full'>
             <h1 className='text-2xl font-bold text-center'>{t('heading')}</h1>
 
-            <div className='bg-red-500 text-white rounded-md'>
-                <p className='font-semibold text-lg text-center'>{error}</p>
-            </div>
+            {error && (
+                <div className='bg-red-500 text-white rounded-md'>
+                    <p className='font-semibold text-lg text-center'>{error}</p>
+                </div>
+            )}
+
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputComponent
                     className='my-6'
@@ -86,25 +109,23 @@ function ShortenLinkComponent() {
                     disabled={isInputDisabled}
                     showEndContent={showCopyBtn}
                     endContent={
-                        <>
-                            <Popover
-                                placement='right'
-                                isOpen={openPopover}
-                                onOpenChange={(open) => setOpenPopover(open)}
-                            >
-                                <PopoverTrigger>
-                                    <div className='relative'>
-                                        <CopyBtn
-                                            onPress={onPressCopy}
-                                            value={watch('originalUrl')}
-                                        />
-                                    </div>
-                                </PopoverTrigger>
-                                <PopoverContent>
-                                    <p>{t('urlCopied')}</p>
-                                </PopoverContent>
-                            </Popover>
-                        </>
+                        <Popover
+                            placement='right'
+                            isOpen={openPopover}
+                            onOpenChange={(open) => setOpenPopover(open)}
+                        >
+                            <PopoverTrigger>
+                                <div className='relative'>
+                                    <CopyBtn
+                                        onPress={onPressCopy}
+                                        value={watch('originalUrl')}
+                                    />
+                                </div>
+                            </PopoverTrigger>
+                            <PopoverContent>
+                                <p>{t('urlCopied')}</p>
+                            </PopoverContent>
+                        </Popover>
                     }
                 />
                 <InputComponent
@@ -123,6 +144,10 @@ function ShortenLinkComponent() {
                         setIsInputDisabled(false);
                     }}
                     disabled={isInputDisabled}
+                />
+                <LinkShortenOption
+                    expirationDate={expirationDate}
+                    setExpirationDate={setExpirationDate}
                 />
                 <Button type='submit'>{t('shortenBtn')}</Button>
             </form>

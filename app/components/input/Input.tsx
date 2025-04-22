@@ -14,6 +14,19 @@ function InputComponent(props: InputProps) {
                 value={props.value}
                 onChange={props.onChange}
                 endContent={props.showEndContent && props.endContent}
+                classNames={{
+                    inputWrapper: [
+                        'bg-white',
+                        'data-[hover=true]:bg-white', // Override hover background
+                        'data-[focus=true]:bg-white', // Override focus background
+                        'data-[focus-visible=true]:bg-white', // Override keyboard focus background
+                        'data-[focus-within=true]:bg-white', // Override focus-within background
+                        'data-[hover=true]:border-current', // Keep border the same on hover
+                        'data-[focus=true]:border-current', // Keep border the same on focus
+                        'data-[focus-visible=true]:border-current', // Keep border the same on keyboard focus
+                        'data-[focus-within=true]:border-current',
+                    ],
+                }}
             />
         </div>
     );

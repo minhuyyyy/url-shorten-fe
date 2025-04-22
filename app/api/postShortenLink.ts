@@ -1,14 +1,15 @@
-import { ShortLinkValues } from "../contracts/interfaces/shortLinkValues";
 
-async function postShortenLink(params: ShortLinkValues) {
+async function postShortenLink(params: FormData) {
+    console.log("🚀 ~ postShortenLink ~ params:", params)
     const data = await fetch('http://localhost:8080/api/urls/create', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            originalURL: params.originalUrl,
-            shortenedURL: params.shortCode
+            originalURL: params.get('originalUrl'),
+            shortenedURL: params.get('shortCode'),
+            expiredOn: params.get('expiredDate')
         }),
     })
     if (!data.ok) {

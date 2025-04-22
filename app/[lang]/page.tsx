@@ -7,7 +7,7 @@ export default function Home() {
             <div className='flex flex-col w-full sm:w-1/3 text-center sm:text-left items-center'>
                 <ShortenLinkComponent />
             </div>
-            <div className='flex justify-center sm:w-1/2'>
+            <div className='flex justify-center sm:w-1/4'>
                 <Image
                     src={`${bannerImg.src}`}
                     alt='banner'

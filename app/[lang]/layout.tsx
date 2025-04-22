@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
+import '@styles/main.scss';
 import { dir } from 'i18next';
-import { languages } from '../i18n/settings';
-import { I18nProvider } from '../contexts/I18nContext';
 import NavBar from '@components/navigation/Navbar';
+import { languages } from '@i18n/settings';
+import { I18nProvider } from '@contexts/I18nContext';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -47,7 +47,7 @@ export default async function RootLayout({
                 >
                     <div className='grid grid-rows-[20px_1fr_20px] items-center min-h-screen pb-20'>
                         <NavBar />
-                        <main className='flex flex-col sm:flex-row items-center justify-center w-full pt-20'>
+                        <main className='flex flex-col sm:flex-row items-center justify-evenly w-full pt-20'>
                             {children}
                         </main>
                     </div>

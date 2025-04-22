@@ -8,5 +8,6 @@
     "shortenBtn": "Shorten",
     "copyBtn": "Copy",
     "urlCopied": "URL copied to clipboard",
-    "shortCodeExistedError": "Shortcode already exists! Please choose another one"
+    "shortCodeExistedError": "Shortcode already exists! Please choose another one",
+    "setUrlExpirationDate":"Url expired on"
 }
