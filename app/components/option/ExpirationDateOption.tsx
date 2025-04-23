@@ -2,8 +2,10 @@ import { useI18n } from '@/app/contexts/I18nContext';
 import { Button, ButtonGroup } from '@heroui/button';
 import { DatePicker } from '@heroui/date-picker';
 import { Radio, RadioGroup, RadioProps } from '@heroui/radio';
+import type {} from 'react';
 import { cn } from '@heroui/theme';
 import {
+    DateValue,
     getLocalTimeZone,
     startOfMonth,
     startOfWeek,
@@ -28,7 +30,9 @@ function ExpirationDateOption({
 
     const [selectingExpirationDate, setSelectingExpirationDate] =
         useState<boolean>(false);
-    const [internalDate, setInternalDate] = useState<typeof now | null>(null);
+    const [internalDate, setInternalDate] = useState<
+        DateValue | null | undefined
+    >(undefined);
 
     // Watch for expiration date changes
     useEffect(() => {
@@ -149,8 +153,8 @@ function ExpirationDateOption({
                             },
                         }}
                         label={t('setUrlExpirationDate')}
-                        value={internalDate}
-                        onChange={(e) => e && setInternalDate(e)}
+                        value={internalDate as never}
+                        onChange={(e) => e && setInternalDate(e as never)}
                     />
                 )}
             </div>
