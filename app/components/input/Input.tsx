@@ -27,6 +27,7 @@ function InputComponent(props: InputProps) {
                         'data-[focus-within=true]:border-current',
                     ],
                 }}
+                type={props.type}
             />
         </div>
     );

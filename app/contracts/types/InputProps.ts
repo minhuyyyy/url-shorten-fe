@@ -3,7 +3,7 @@ import { UseFormRegisterReturn } from "react-hook-form";
 
 export type InputProps = {
     label: string;
-    register: UseFormRegisterReturn
+    register?: UseFormRegisterReturn
     name: string;
     className?: string;
     error?: string;
@@ -12,4 +12,5 @@ export type InputProps = {
     showEndContent?: boolean;
     endContent?: JSX.Element;
     disabled?: boolean;
+    type?:string
 }

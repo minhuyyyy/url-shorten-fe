@@ -1,6 +1,11 @@
 
 async function postShortenLink(params: FormData) {
-    console.log("🚀 ~ postShortenLink ~ params:", params)
+    const formData = params.get('expirationDate')
+    let expirationDate;
+    if (formData !== null && typeof formData == 'string') {
+        const date = new Date(formData)
+        expirationDate = date;
+    } else expirationDate = null
     const data = await fetch('http://localhost:8080/api/urls/create', {
         method: 'POST',
         headers: {
@@ -9,7 +14,8 @@ async function postShortenLink(params: FormData) {
         body: JSON.stringify({
             originalURL: params.get('originalUrl'),
             shortenedURL: params.get('shortCode'),
-            expiredOn: params.get('expiredDate')
+            expirationDate: expirationDate,
+            password: params.get('password')
         }),
     })
     if (!data.ok) {

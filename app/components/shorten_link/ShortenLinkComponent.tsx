@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import InputComponent from '@components/input/Input';
 import { Button } from '@heroui/button';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -25,29 +25,23 @@ function ShortenLinkComponent() {
     const [showCopyBtn, setShowCopyBtn] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [isInputDisabled, setIsInputDisabled] = useState(false);
-    const [expirationDate, setExpirationDate] = useState<string>('');
-
-    useEffect(() => {
-        console.log(
-            '🚀 ~ ShortenLinkComponent ~ expirationDate:',
-            expirationDate,
-        );
-    }, [expirationDate]);
-
+    const [expirationDate, setExpirationDate] = useState<string | null>(null);
+    const [parentUrlPassword, setParentUrlPassword] = useState<string | null>(
+        null,
+    );
     const onSubmit = async (data: FieldValues) => {
         const formData = new FormData();
         formData.append('originalUrl', data.originalUrl);
         formData.append('shortCode', data.shortCode);
 
-        // if (expirationDate) {
-        formData.append('expiredDate', expirationDate);
-        // }
+        if (expirationDate) {
+            formData.append('expirationDate', expirationDate);
+        }
+        if (parentUrlPassword) {
+            formData.append('password', parentUrlPassword);
+        }
 
         try {
-            console.log(
-                '🚀 ~ onSubmit ~ formData:',
-                formData.get('expiredDate'),
-            );
             const res = await postShortenLink(formData);
             if (res?.shortenedURL) {
                 setValue(
@@ -148,8 +142,15 @@ function ShortenLinkComponent() {
                 <LinkShortenOption
                     expirationDate={expirationDate}
                     setExpirationDate={setExpirationDate}
+                    urlPassword={parentUrlPassword}
+                    setUrlPassword={setParentUrlPassword}
                 />
-                <Button type='submit'>{t('shortenBtn')}</Button>
+                <Button
+                    type='submit'
+                    className='mt-6'
+                >
+                    {t('shortenBtn')}
+                </Button>
             </form>
         </div>
     );

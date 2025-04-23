@@ -9,5 +9,9 @@
     "copyBtn": "Copy",
     "urlCopied": "URL copied to clipboard",
     "shortCodeExistedError": "Shortcode already exists! Please choose another one",
-    "setUrlExpirationDate":"Url expired on"
+    "shortenLinkOptions": "Short link options",
+    "setUrlExpirationDate": "Link expired on",
+    "setUrlPassword": "Set link password",
+    "showUrlPassword": "Show link password",
+    "hideUrlPassword": "Hide password"
 }

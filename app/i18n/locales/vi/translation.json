@@ -8,5 +8,9 @@
     "copyBtn": "Sao chép",
     "urlCopied": "URL đã được sao chép vào bảng tạm",
     "shortCodeExistedError": "Mã tùy chỉnh đã tồn tại! Vui lòng chọn mã khác",
-    "setUrlExpirationDate": "Ngày hết hạn link"
+    "shortenLinkOptions": "Tùy chọn link rút gọn",
+    "setUrlExpirationDate": "Ngày hết hạn link",
+    "setUrlPassword": "Tạo password cho link",
+    "showUrlPassword":"Hiện password",
+    "hideUrlPassword":"Ẩn password"
 }
