@@ -8,6 +8,7 @@ import {
     NavbarMenuItem,
     NavbarMenuToggle,
 } from '@heroui/navbar';
+// import { Switch } from '@heroui/switch';
 import Link from 'next/link';
 import React from 'react';
 
@@ -35,7 +36,9 @@ function NavBar() {
                     className='sm:hidden'
                 />
                 <NavbarBrand>
-                    <h1 className='font-bold text-2xl text-blue-600 text-start' >Shortify</h1>
+                    <h1 className='font-bold text-2xl text-blue-600 text-start'>
+                        Shortify
+                    </h1>
                 </NavbarBrand>
             </NavbarContent>
 
@@ -57,6 +60,7 @@ function NavBar() {
                         </Link>
                     </NavbarMenuItem>
                 ))}
+                <NavbarMenuItem>{/* <Switch */}</NavbarMenuItem>
             </NavbarMenu>
         </Navbar>
     );
