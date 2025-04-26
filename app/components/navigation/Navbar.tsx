@@ -4,6 +4,7 @@ import {
     Navbar,
     NavbarBrand,
     NavbarContent,
+    NavbarItem,
     NavbarMenu,
     NavbarMenuItem,
     NavbarMenuToggle,
@@ -11,6 +12,7 @@ import {
 // import { Switch } from '@heroui/switch';
 import Link from 'next/link';
 import React from 'react';
+import LanguageSwitch from '../switch/LanguageSwitch';
 
 function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -40,6 +42,9 @@ function NavBar() {
                         Shortify
                     </h1>
                 </NavbarBrand>
+                <NavbarItem>
+                    <LanguageSwitch />
+                </NavbarItem>
             </NavbarContent>
 
             <NavbarMenu>
@@ -60,7 +65,6 @@ function NavBar() {
                         </Link>
                     </NavbarMenuItem>
                 ))}
-                <NavbarMenuItem>{/* <Switch */}</NavbarMenuItem>
             </NavbarMenu>
         </Navbar>
     );

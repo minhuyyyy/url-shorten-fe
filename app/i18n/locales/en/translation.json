@@ -13,5 +13,6 @@
     "setUrlExpirationDate": "Link expired on",
     "setUrlPassword": "Set link password",
     "showUrlPassword": "Show link password",
-    "hideUrlPassword": "Hide password"
+    "hideUrlPassword": "Hide password",
+    "switchLanguage":"Switch Language"
 }

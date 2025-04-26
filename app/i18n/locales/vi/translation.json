@@ -11,6 +11,7 @@
     "shortenLinkOptions": "Tùy chọn link rút gọn",
     "setUrlExpirationDate": "Ngày hết hạn link",
     "setUrlPassword": "Tạo password cho link",
-    "showUrlPassword":"Hiện password",
-    "hideUrlPassword":"Ẩn password"
+    "showUrlPassword": "Hiện password",
+    "hideUrlPassword": "Ẩn password",
+    "switchLanguage": "Thay đổi ngôn ngữ"
 }
